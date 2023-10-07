@@ -1,0 +1,4 @@
+
+post http://localhost:9009/ficheros/createBucket
+Content-Type: application/json
+{"nombre": "curso"}
