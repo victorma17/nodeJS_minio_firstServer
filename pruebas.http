@@ -1,4 +1,4 @@
-
-post http://localhost:9009/ficheros/createBucket
+POST http://localhost:3344/minio/createBucket
 Content-Type: application/json
+
 {"nombre": "curso"}

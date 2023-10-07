@@ -1,6 +1,6 @@
-const ex = require('express')
+const ex = require("express")
 const app = ex()
-const Minio = require('minio');
+const Minio = require("minio");
 
 const minioClient = new Minio.Client({
     endPoint: "localhost",
@@ -10,16 +10,14 @@ const minioClient = new Minio.Client({
     useSSL: false,
 });
 
-app.listen(9009)
 
-app.post("/ficheros/createBucket", async (req, res) => {
-        try {
-            await minioClient.makeBucket(req.body.nombre, 'us-east-1')
-            res.send({ res: "00", description: "OK", data: { bucket: req.body.nombre } })
-        } catch (error) {
-            res.status(500).send({
-                error: error, res: "500", description: "ERR",
-                data: { bucket: req.body.nombre }
-            })
-        }
-    });
+app.post(("/minio/createBucket", async (req, res) => {
+    try {
+        await minioClient.makeBucket(req.body.nombre, "us-east-1")
+        res.status(200).send({ resultado: req.body.nombre })
+    } catch (error) {
+        res.status(500).send({ error })
+    }
+}))
+
+app.listen(3344)
